@@ -10,7 +10,38 @@
 </head>
 
 <body>
-
+   <div class="popup">
+      <div class="popup__image"></div>
+      <div class="popup__selection">
+         <div class="selection__btn">VS Bot</div>
+         <div class="selection__btn">VS Player</div>
+      </div>
+      <form>
+         <div class="popup__input">
+            <input type="text" id="name" name="firstPlayer_name">
+            <label for="name">First Player Name</label>
+         </div>
+         <div class="popup__input">
+            <input type="text" id="name" name="secondPlayer_name">
+            <label for="name">Second Player Name</label>
+         </div>
+      </form>
+      <div class="popup__start-btn">Start</div>
+   </div>
+   <main>
+      <div class="player">
+         <div class="player__name"></div>
+         <div class="player__score">0</div>
+      </div>
+      <div class="board">
+         <div class="board__grid"></div>
+         <div class="board__restart-btn">Restart</div>
+      </div>
+      <div class="player">
+         <div class="player__name"></div>
+         <div class="player__score">0</div>
+      </div>
+   </main>
 </body>
 
 <script src="script.js"></script>
