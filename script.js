@@ -15,14 +15,12 @@ const gameBoard = (() => {
 })();
 
 const Player = (symbol, gameBoard) => {
-   const addSymbol = () => {
-      boardCells.forEach(cell => cell.addEventListener(('click'), () => {
-         const cellIndex = cell.getAttribute('data-index');
-         if (gameBoard.board[cellIndex] === '') {
-            gameBoard.board[cellIndex] = symbol;
-            gameBoard.displayContent();
-         }
-      }))
+   const addSymbol = (cell) => {
+      const cellIndex = cell.getAttribute('data-index');
+      if (gameBoard.board[cellIndex] === '') {
+         gameBoard.board[cellIndex] = symbol;
+         gameBoard.displayContent();
+      }
    }
 
    return {
@@ -31,4 +29,13 @@ const Player = (symbol, gameBoard) => {
 }
 
 const firstPlayer = Player('X', gameBoard);
-firstPlayer.addSymbol()
+const secondPlayer = Player('O', gameBoard);
+let step = 0
+
+boardCells.forEach(cell => {
+   cell.addEventListener('click', () => {
+      if (step % 2 === 0) firstPlayer.addSymbol(cell);
+      else secondPlayer.addSymbol(cell);
+      step++;
+   })
+})
