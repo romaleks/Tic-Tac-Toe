@@ -24,7 +24,8 @@ const Player = (symbol, gameBoard) => {
    }
 
    return {
-      addSymbol,
+      symbol,
+      addSymbol
    }
 }
 
@@ -40,20 +41,33 @@ const game = (() => {
       [2, 4, 6]
    ]
    
+   const checkWinning = (symbol) => {
+      return WINNING_COMBINATIONS.some(combination => {
+         return combination.every(index => {
+            return boardCells[index].textContent === symbol;
+         })
+      })
+   }
+
    const playGame = () => {
       let step = 0
 
       boardCells.forEach(cell => {
          cell.addEventListener('click', () => {
-            if (step % 2 === 0) firstPlayer.addSymbol(cell);
-            else secondPlayer.addSymbol(cell);
+            if (step % 2 === 0) {
+               firstPlayer.addSymbol(cell);
+               if (checkWinning(firstPlayer.symbol)) console.log('win!');
+            } else {
+               secondPlayer.addSymbol(cell);
+               if (checkWinning(secondPlayer.symbol)) console.log('win!');
+            }
             step++;
          });
       });
    }
 
    return {
-      playGame,
+      playGame
    }
 })();
 
