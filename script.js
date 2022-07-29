@@ -5,7 +5,7 @@ const gameBoard = (() => {
 
    const displayContent = () => {
       let cellIndex = 0;
-      boardCells.forEach(cell => cell.textContent = board[cellIndex++]);
+      boardCells.forEach(cell => cell.textContent = gameBoard.board[cellIndex++]);
    }
 
    return {
@@ -15,19 +15,20 @@ const gameBoard = (() => {
 })();
 
 const Player = (symbol, gameBoard) => {
-   const addSymbol = (cell, cellIndex) => {
+   const addSymbol = (cellIndex) => {
       gameBoard.board[cellIndex] = symbol;
       gameBoard.displayContent();
    }
 
    return {
       symbol,
+      score: 0,
       addSymbol
    }
 }
 
 const game = (() => {
-   WINNING_COMBINATIONS = [
+   const WINNING_COMBINATIONS = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -37,7 +38,27 @@ const game = (() => {
       [0, 4, 8],
       [2, 4, 6]
    ]
+   const boardGrid = document.querySelector('.board__grid');
+   const restartBtn = document.querySelector('.board__restart-btn');
+   const newRoundBtn = document.querySelector('.round-btn');
+   let step = 0
+
+   const restartGame = () => {
+      gameBoard.board = ['', '', '', '', '', '', '', '', ''];
+      gameBoard.displayContent();
+      boardGrid.classList.remove('active')
+      step = 0;
+      document.querySelectorAll('.player__score').forEach(score => {
+         score.textContent = '0';
+      })
+   }
    
+   const beginNewGame = () => {
+      gameBoard.board = ['', '', '', '', '', '', '', '', ''];
+      gameBoard.displayContent();
+      boardGrid.classList.remove('active')
+   }
+
    const checkWinning = (symbol) => {
       return WINNING_COMBINATIONS.some(combination => {
          return combination.every(index => {
@@ -46,19 +67,24 @@ const game = (() => {
       })
    }
 
-   const playGame = () => {
-      let step = 0
+   const endGame = (winner) => {
+      const winnerScore = document.querySelector('#' + winner.symbol).textContent = ++winner.score;
+      setTimeout(() => {
+         boardGrid.classList.add('active')
+      }, 1500)
+   }
 
+   const playGame = () => {
       boardCells.forEach(cell => {
          cell.addEventListener('click', () => {
             const cellIndex = cell.getAttribute('data-index');
             if (gameBoard.board[cellIndex] === '') {
                if (step % 2 === 0) {
-                  firstPlayer.addSymbol(cell, cellIndex);
-                  if (checkWinning(firstPlayer.symbol)) console.log('win!');
+                  firstPlayer.addSymbol(cellIndex);
+                  if (checkWinning(firstPlayer.symbol)) endGame(firstPlayer);
                } else {
-                  secondPlayer.addSymbol(cell, cellIndex);
-                  if (checkWinning(secondPlayer.symbol)) console.log('win!');
+                  secondPlayer.addSymbol(cellIndex);
+                  if (checkWinning(secondPlayer.symbol)) endGame(secondPlayer);
                }
                step++;
             }
@@ -67,7 +93,11 @@ const game = (() => {
    }
 
    return {
-      playGame
+      restartBtn,
+      newRoundBtn,
+      playGame,
+      restartGame,
+      beginNewGame
    }
 })();
 
@@ -75,3 +105,5 @@ const firstPlayer = Player('X', gameBoard);
 const secondPlayer = Player('O', gameBoard);
 
 game.playGame()
+game.restartBtn.onclick = game.restartGame;
+game.newRoundBtn.onclick = game.beginNewGame;
