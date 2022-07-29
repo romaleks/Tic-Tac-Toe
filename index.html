@@ -14,20 +14,20 @@
       <div class="popup__image"></div>
       <div class="popup__selection">
          <div class="selection__title">Choose Play Mode</div>
-         <div class="selection__btn">VS Bot</div>
-         <div class="selection__btn">VS Player</div>
+         <button type="button" class="selection__btn">VS Bot</button>
+         <button type="button" class="selection__btn">VS Player</button>
       </div>
       <form>
          <div class="popup__input">
-            <input type="text" id="name" name="firstPlayer_name">
-            <label for="name">First Player Name</label>
+            <label for="first_name">First Player Name</label>
+            <input type="text" id="first_name" name="firstPlayer_name" placeholder="Name" required>
          </div>
          <div class="popup__input">
-            <input type="text" id="name" name="secondPlayer_name">
-            <label for="name">Second Player Name</label>
+            <label for="second_name">Second Player Name</label>
+            <input type="text" id="second_name" name="secondPlayer_name" placeholder="Name" required>
          </div>
       </form>
-      <div class="popup__start-btn">Start</div>
+      <button type="button" class="popup__start-btn">Start</button>
    </div>
    <main>
       <div class="player">
@@ -36,7 +36,7 @@
       </div>
       <div class="board">
          <div class="board__grid"></div>
-         <div class="board__restart-btn">Restart</div>
+         <button type="button" class="board__restart-btn">Restart</button>
       </div>
       <div class="player">
          <div class="player__name"></div>
