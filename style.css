@@ -104,7 +104,6 @@ input {
 .popup__start-btn:hover {
    transform: scale(1.1);
 }
-
 .popup.inactive {
    height: auto;
 }
@@ -120,7 +119,6 @@ main {
 .player {
    font-size: 4rem;
    text-align: center;
-
 }
 .player__name {
 }
@@ -146,6 +144,18 @@ main {
    align-items: center;
    font-size: 5rem;
    cursor: pointer;
+}
+.grid__item[data-corner="tl"] {
+   border-top-left-radius: 15px;
+}
+.grid__item[data-corner="tr"] {
+   border-top-right-radius: 15px;
+}
+.grid__item[data-corner="bl"] {
+   border-bottom-left-radius: 15px;
+}
+.grid__item[data-corner="br"] {
+   border-bottom-right-radius: 15px;
 }
 .grid__item:nth-child(odd) {
    background-image: radial-gradient( circle 957px at 8.7% 50.5%,  rgba(246,191,13,1) 0%, rgba(249,47,47,1) 90% );
