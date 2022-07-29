@@ -15,12 +15,9 @@ const gameBoard = (() => {
 })();
 
 const Player = (symbol, gameBoard) => {
-   const addSymbol = (cell) => {
-      const cellIndex = cell.getAttribute('data-index');
-      if (gameBoard.board[cellIndex] === '') {
-         gameBoard.board[cellIndex] = symbol;
-         gameBoard.displayContent();
-      }
+   const addSymbol = (cell, cellIndex) => {
+      gameBoard.board[cellIndex] = symbol;
+      gameBoard.displayContent();
    }
 
    return {
@@ -54,14 +51,17 @@ const game = (() => {
 
       boardCells.forEach(cell => {
          cell.addEventListener('click', () => {
-            if (step % 2 === 0) {
-               firstPlayer.addSymbol(cell);
-               if (checkWinning(firstPlayer.symbol)) console.log('win!');
-            } else {
-               secondPlayer.addSymbol(cell);
-               if (checkWinning(secondPlayer.symbol)) console.log('win!');
+            const cellIndex = cell.getAttribute('data-index');
+            if (gameBoard.board[cellIndex] === '') {
+               if (step % 2 === 0) {
+                  firstPlayer.addSymbol(cell, cellIndex);
+                  if (checkWinning(firstPlayer.symbol)) console.log('win!');
+               } else {
+                  secondPlayer.addSymbol(cell, cellIndex);
+                  if (checkWinning(secondPlayer.symbol)) console.log('win!');
+               }
+               step++;
             }
-            step++;
          });
       });
    }
