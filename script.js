@@ -50,6 +50,8 @@ const game = (() => {
       boardGrid.classList.remove('active');
       boardCells.forEach(cell => cell.style.pointerEvents = 'all');
       step = 0;
+      firstPlayer.score = 0;
+      secondPlayer.score = 0;
       document.querySelectorAll('.player__score').forEach(score => {
          score.textContent = '0';
       })
