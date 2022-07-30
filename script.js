@@ -42,12 +42,13 @@ const game = (() => {
    const boardGrid = document.querySelector('.board__grid');
    const restartBtn = document.querySelector('.board__restart-btn');
    const newRoundBtn = document.querySelector('.round-btn');
-   let step = 0
+   let step = 0;
 
    const restartGame = () => {
       gameBoard.board = ['', '', '', '', '', '', '', '', ''];
       gameBoard.displayContent();
-      boardGrid.classList.remove('active')
+      boardGrid.classList.remove('active');
+      boardCells.forEach(cell => cell.style.pointerEvents = 'all');
       step = 0;
       document.querySelectorAll('.player__score').forEach(score => {
          score.textContent = '0';
@@ -57,19 +58,21 @@ const game = (() => {
    const beginNewGame = () => {
       gameBoard.board = ['', '', '', '', '', '', '', '', ''];
       gameBoard.displayContent();
-      boardGrid.classList.remove('active')
+      boardGrid.classList.remove('active');
+      boardCells.forEach(cell => cell.style.pointerEvents = 'all');
    }
 
    const checkWinning = (symbol) => {
       return WINNING_COMBINATIONS.some(combination => {
          return combination.every(index => {
             return boardCells[index].textContent === symbol;
-         })
-      })
+         });
+      });
    }
 
    const endGame = (winner) => {
       const winnerScore = document.querySelector('#' + winner.symbol).textContent = ++winner.score;
+      boardCells.forEach(cell => cell.style.pointerEvents = 'none');
       setTimeout(() => {
          boardGrid.classList.add('active')
       }, 1500)
