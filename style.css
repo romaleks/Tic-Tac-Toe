@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
 @font-face {
    font-family: 'Station';
    src: url('fonts/station-webfont.woff2') format('woff2'),
@@ -137,6 +139,7 @@ main.active {
 }
 .player__symbol {
    font-size: 8rem;
+   font-family: 'Lato', sans-serif;
 }
 .board {
    margin: 0 auto;
@@ -173,6 +176,7 @@ main.active {
    justify-content: center;
    align-items: center;
    font-size: 5rem;
+   font-family: 'Lato', sans-serif;
    transition: all 0.5s ease;
    cursor: pointer;
 }
