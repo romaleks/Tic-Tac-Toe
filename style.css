@@ -26,6 +26,7 @@ button {
    justify-content: center;
    align-items: center;
    height: 100vh;
+   transition: all 1s ease;
 }
 .popup__image {
    width: 100px;
@@ -64,6 +65,10 @@ button {
 form {
    overflow: hidden;
    padding: 0 0.5rem 1.5rem 0.5rem;
+   text-align: center;
+}
+.popup__inputs {
+   margin: 0 0 1.5rem 0;
 }
 .popup__input {
    display: inline-block;
@@ -107,7 +112,8 @@ input {
 .popup.inactive {
    height: auto;
 }
-.popup.inactive form, .popup__start-btn {
+.popup.inactive form,
+.popup.inactive .popup__start-btn {
    display: none;
 }
 
@@ -115,6 +121,10 @@ main {
    display: grid;
    grid-template-columns: 1fr 2fr 1fr;
    padding: 2rem;
+   display: none;
+}
+main.active {
+   display: grid;
 }
 .player {
    font-size: 4rem;

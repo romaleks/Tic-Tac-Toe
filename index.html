@@ -10,28 +10,30 @@
 </head>
 
 <body>
-   <div class="popup inactive">
+   <div class="popup">
       <div class="popup__image"></div>
       <div class="popup__selection">
          <div class="selection__title">Choose Play Mode</div>
-         <button type="button" class="selection__btn active">VS Bot</button>
-         <button type="button" class="selection__btn">VS Player</button>
+         <button type="button" class="selection__btn">VS Bot</button>
+         <button type="button" class="selection__btn active">VS Player</button>
       </div>
       <form>
-         <div class="popup__input">
-            <label for="first_name">First Player Name</label>
-            <input type="text" id="first_name" name="firstPlayer_name" placeholder="Name" required>
+         <div class="popup__inputs">
+            <div class="popup__input">
+               <label for="first_name">First Player Name</label>
+               <input type="text" id="first_name" name="firstPlayer_name" placeholder="Name" required>
+            </div>
+            <div class="popup__input">
+               <label for="second_name">Second Player Name</label>
+               <input type="text" id="second_name" name="secondPlayer_name" placeholder="Name" required>
+            </div>
          </div>
-         <div class="popup__input">
-            <label for="second_name">Second Player Name</label>
-            <input type="text" id="second_name" name="secondPlayer_name" placeholder="Name" required>
-         </div>
+         <button type="submit" class="popup__start-btn">Start</button>
       </form>
-      <button type="button" class="popup__start-btn">Start</button>
    </div>
-   <main>
+   <main class="active">
       <div class="player">
-         <div class="player__name">IDDna</div>
+         <div id="first_player" class="player__name">IDDna</div>
          <div id="X" class="player__score">0</div>
          <div class="player__symbol">X</div>
       </div>
@@ -51,7 +53,7 @@
          <button type="button" class="board__restart-btn">Restart</button>
       </div>
       <div class="player">
-         <div class="player__name">IDDna</div>
+         <div id="second_player" class="player__name">IDDna</div>
          <div id="O" class="player__score">0</div>
          <div class="player__symbol">O</div>
       </div>

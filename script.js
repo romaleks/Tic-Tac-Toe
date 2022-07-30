@@ -1,4 +1,5 @@
 const boardCells = document.querySelectorAll('.grid__item');
+const form = document.querySelector('form');
 
 const gameBoard = (() => {
    const board = ['', '', '', '', '', '', '', '', ''];
@@ -52,7 +53,7 @@ const game = (() => {
          score.textContent = '0';
       })
    }
-   
+
    const beginNewGame = () => {
       gameBoard.board = ['', '', '', '', '', '', '', '', ''];
       gameBoard.displayContent();
@@ -104,6 +105,20 @@ const game = (() => {
 const firstPlayer = Player('X', gameBoard);
 const secondPlayer = Player('O', gameBoard);
 
-game.playGame()
-game.restartBtn.onclick = game.restartGame;
-game.newRoundBtn.onclick = game.beginNewGame;
+form.addEventListener('submit', (e) => {
+   const popup = document.querySelector('.popup');
+   const main = document.querySelector('main');
+   const firstPlayerInput = document.querySelector('#first_name');
+   const secondPlayerInput = document.querySelector('#second_name');
+   const firstPlayerName = document.querySelector('#first_player');
+   const secondPlayerName = document.querySelector('#second_player');
+
+   popup.classList.add('inactive');
+   main.classList.add('active');
+   firstPlayerName.textContent = firstPlayerInput.value;
+   secondPlayerName.textContent = secondPlayerInput.value;
+   e.preventDefault();
+   game.playGame();
+   game.restartBtn.onclick = game.restartGame;
+   game.newRoundBtn.onclick = game.beginNewGame;
+})
