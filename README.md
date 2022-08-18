@@ -1,4 +1,4 @@
-# Todo App
+# Tic-Tac-Toe
 
 This project is a part of the "The Odin Project" [curriculum](https://www.theodinproject.com/).
 
@@ -14,7 +14,7 @@ This project is a part of the "The Odin Project" [curriculum](https://www.theodi
 
 ### Screenshot
 
-![Solution Preview](./dist/img/preview.png)
+![Solution Preview](./img/preview.png)
 
 ### Links
 
